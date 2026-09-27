@@ -1,3 +1,7 @@
+git add README.md
+
+git rebase --continue
+
 # G6 — Cross-Platform Game Asset Pipeline & Resource Management Framework
 
 > **Object-Oriented Programming (OOP) Project — C++**
@@ -27,8 +31,8 @@ Instead of storing the same texture repeatedly, our project introduces a central
 
 The system focuses on three core problems:
 
-| Problem                         | Solution      |
-| ------------------------------- | ------------- |
+| Problem                         | Solution            |
+| ------------------------------- | ------------------- |
 | Duplicated asset data           | **Flyweight** |
 | Unnecessary / early loading     | **Proxy**     |
 | Distributed resource management | **Singleton** |
@@ -526,26 +530,26 @@ G6-Asset-Pipeline/
 
 # 🛠️ Technologies
 
-| Technology                   | Purpose                        |
-| ---------------------------- | ------------------------------ |
-| **C++**                      | Main programming language      |
-| **OOP**                      | Core programming paradigm      |
-| **Smart Pointers**           | Resource lifetime management   |
-| **STL**                      | Data structures and containers |
-| `unordered_map`              | Fast asset lookup              |
-| `list`                       | LRU ordering                   |
+| Technology                       | Purpose                        |
+| -------------------------------- | ------------------------------ |
+| **C++**                    | Main programming language      |
+| **OOP**                    | Core programming paradigm      |
+| **Smart Pointers**         | Resource lifetime management   |
+| **STL**                    | Data structures and containers |
+| `unordered_map`                | Fast asset lookup              |
+| `list`                         | LRU ordering                   |
 | `std::async` / `std::thread` | Asynchronous loading           |
-| Catch2 / `assert()`          | Unit testing                   |
-| PlantUML / draw.io           | UML diagrams                   |
-| Valgrind / AddressSanitizer  | Memory leak detection          |
+| Catch2 /`assert()`             | Unit testing                   |
+| PlantUML / draw.io               | UML diagrams                   |
+| Valgrind / AddressSanitizer      | Memory leak detection          |
 
 ---
 
 # 📐 Design Patterns Used
 
-| Pattern       | Role in Project                          |
-| ------------- | ---------------------------------------- |
-| **Singleton** | Centralized `AssetManager`               |
+| Pattern             | Role in Project                          |
+| ------------------- | ---------------------------------------- |
+| **Singleton** | Centralized`AssetManager`              |
 | **Proxy**     | Lazy loading of assets                   |
 | **Flyweight** | Sharing intrinsic asset data             |
 | **Observer**  | Asset loading notifications              |
@@ -618,11 +622,11 @@ The project therefore connects OOP and Design Patterns to a realistic systems pr
 
 | Member | Responsibility |
 | ------ | -------------- |
-| Thịnh  | TBD            |
+| Thịnh | TBD            |
 | Quang  | TBD            |
 | Minh   | TBD            |
-| Tú     | TBD            |
-| Mạnh   | TBD            |
+| Tú    | TBD            |
+| Mạnh  | TBD            |
 
 > Team responsibilities can be updated as the implementation progresses.
 
@@ -683,3 +687,17 @@ Software Architecture
 
 rather than implementing Design Patterns as isolated theoretical examples.
 
+=======
+x1
+
+OOP
+
+# OOP
+
+>>>>>>> f79ec89 ( pull readme from github)
+>>>>>>>
+>>>>>>
+>>>>>
+>>>>
+>>>
+>>
