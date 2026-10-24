@@ -13,10 +13,22 @@ class GameAsset {
             cout<<"Size:"<<sizeMB<<"MB"<<endl;
         }
 
-        int GetSizeMB() {
+        int GetSizeMB() const {
             return sizeMB;
         }
         
+        string GetId() const {
+            return id;
+        }
+
+        void SetSizeMB(int s) {
+            if(s<0) {
+                cout<<"Size must be greater than 0"<<"\n";
+            } else {
+                sizeMB = s;
+            }
+        }
+
     GameAsset(string n, int s) : id(n), sizeMB(s) {
         cout<<"Tạo id và size"<<"\n";
     }
@@ -26,7 +38,7 @@ int main() {
     string id = "tree";
     int sizeMB = 10;
     GameAsset myAsset1(id, sizeMB);
-    
+    myAsset1.SetSizeMB(-1);
     myAsset1.Print();
 
     GameAsset* myAsset2 = new GameAsset("rock", 20);
