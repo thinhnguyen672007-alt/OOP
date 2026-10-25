@@ -1,33 +1,47 @@
 #include <iostream>
-#include <vector>
-#include <string>
 using namespace std;
 
-class Student {
-    private : 
-        string name;
-        int id;
+class FloatBuffer {
+    private :
+        float* data;
+        int size;
+    
+    public : 
+        FloatBuffer(int n ){
+            size = n ;
+            data = new float[n];
+            for(int i = 0; i< n; i++ ) {
+                data[i] = 0.0f;
+            }
+        };
 
-    public :
-        Student(string name, int id) {
-            this->name = name;
-            this->id = id;
-        }
+        ~FloatBuffer() {
+            delete[] data;
+            cout<<"Giải phóng bộ nhớ kích thước" << size <<endl;
+        };
 
-        string getName(){
-            return this->name;
-        }
+        void set(int i, float v) {
+            if( i >= 0 && i < size ) {
+                data[i] = v;
+            } else {
+                cout << "Index vượt ra size" << endl;
+            }
+        };
 
-        int getID() {
-            return this->id;
-        }
-
+        float get(int i) const {
+            if (i >= 0 && i < size) {
+                return data[i];
+            } else {
+                cout << "vượt ra size rồi" << endl;
+                return 0.0f;
+            }
+        };
 };
 
 int main() {
-    Student* s1= new Student("Thịnh", 11257829);
-    cout<<"Tên học sinh lầ:" << s1->getName() << endl;
-    cout<<"ID học sinh là:" << s1->getID() << endl;
-    delete s1;
+    FloatBuffer* buf = new FloatBuffer(8);
+    buf->set(1, 3.9f);
+    cout << "Gia tri tai vi tri 1: " << buf->get(1) << endl;
+    delete buf;
     return 0;
 }
