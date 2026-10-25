@@ -1,47 +1,42 @@
 #include <iostream>
-using namespace std;
+#include <string>
+using namespace std; 
 
-class FloatBuffer {
-    private :
-        float* data;
-        int size;
-    
+class Person {
+    protected :
+        string name;
+        int age;
+
     public : 
-        FloatBuffer(int n ){
-            size = n ;
-            data = new float[n];
-            for(int i = 0; i< n; i++ ) {
-                data[i] = 0.0f;
-            }
+        Person(string n, int a) {
+            name = n;
+            age = a;
         };
 
-        ~FloatBuffer() {
-            delete[] data;
-            cout<<"Giải phóng bộ nhớ kích thước" << size <<endl;
-        };
-
-        void set(int i, float v) {
-            if( i >= 0 && i < size ) {
-                data[i] = v;
-            } else {
-                cout << "Index vượt ra size" << endl;
-            }
-        };
-
-        float get(int i) const {
-            if (i >= 0 && i < size) {
-                return data[i];
-            } else {
-                cout << "vượt ra size rồi" << endl;
-                return 0.0f;
-            }
+        void show() {
+            cout << "Họ và tên: " << name <<endl;
+            cout << "Tuổi: " << age << endl;
         };
 };
 
+class Student : public Person {
+    private : 
+        int StudentID;
+
+    public: 
+        Student(int id, string n, int a) : Person(n,a) {
+            StudentID = id;
+        };
+
+        void showInfor() {
+            cout << "Mã Sinh Viên : " << StudentID << endl;
+        }
+};
+
 int main() {
-    FloatBuffer* buf = new FloatBuffer(8);
-    buf->set(1, 3.9f);
-    cout << "Gia tri tai vi tri 1: " << buf->get(1) << endl;
-    delete buf;
+    Student s(11257829, "Nguyễn Vũ Đức Thịnh", 19);
+    cout << "Một vài thông tin cá nhân:" << endl;
+    s.show();
+    s.showInfor();
     return 0;
 }
