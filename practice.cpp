@@ -1,68 +1,90 @@
-#include <iostream>
+#include <iostream> 
 #include <string>
 using namespace std;
 
-class payment {
-    protected : 
-        double amount; 
-    
+class transport {
+    protected :
+        int lisencePlate;
+        string autoMaker;
+        int yearProduction;
+
     public :
-        payment(double a) {
-            amount = a;
+        transport(int l, string a, int y) {
+            lisencePlate = l;
+            autoMaker = a;
+            yearProduction = y;
+            if(y > 2026) {
+                cout <<" Bạn đi trước tương lai à!"<<endl;
+            } else if (y < 2000) {
+                cout <<"Xe đã quá cũ! Cần đổi ngay!"<<endl;
+            }
         }
 
-        virtual ~payment() {};
+        virtual ~transport() {};
 
-        virtual void pay() {
-            cout << "Đang thanh toán với số tiền: " << amount << "VND"<< endl;
+        virtual void speed() {
+            cout <<"Các phương tiện có vận tốc trung bình là 50km/h"<<endl;
         }
-};
 
-class cashPayment : public payment {
-    public :
-        cashPayment(double a) : payment(a) {}
-        
-        void pay() override {
-            cout << "Thanh toán tiền mặt: " << amount << "VND" << endl;
-        }
-};
-
-class momoPayment : public payment {
-    public :
-        momoPayment(double a) : payment(a) {}
-
-        void pay() override {
-            cout << "Thanh toán tiền Momo: " << amount << "VND" << endl;
+        virtual void refuel() {
+            cout <<"Cần nạp nhiên liệu"<<endl;
         }
 };
 
-class cardPayment : public payment {
-    private :
-        string cardNumber;
-
+class carElectric : public transport {
     public :
-        cardPayment(double a, string cardNum) : payment(a) {
-            cardNumber = cardNum;
-        };
+        carElectric(int l, string a, int y) : transport(l, a, y) {}
 
-        void pay() override {
-            cout << "Thanh toán bằng thẻ với số thẻ : " << cardNumber <<", với số tiền :" << amount << "VND" << endl;
+        void speed() override {
+            cout <<"Vận tốc của ô tô có thể lên tới 100km/h" << endl;
+        }
+
+        void refuel() override {
+            cout <<"Xe cần nạp điện để tiếp tục đi" << endl;
+        }
+
+};
+
+class motorbike : public transport {
+    public :
+        motorbike(int l, string a, int y) : transport(l, a, y) {}
+
+        void speed() override {
+            cout <<"Vận tốc của xe máy có thể lên tới 70km/h" << endl;
+        }
+
+        void refuel() override {
+            cout <<"Xe cần đổ xăng để tiếp tục đi" << endl;
+        }
+};
+
+class truck : public transport {
+    public :
+        truck(int l, string a, int y) : transport(l, a, y) {}
+
+        void speed() override {
+            cout <<"Vận tốc của xe tải có thể lên tới 120km/h" << endl;
+        }
+
+        void refuel() override {
+            cout <<"Xe cần đổ xăng để tiếp tục đi" << endl;
         }
 };
 
 int main() {
-    payment* p[3];
-    p[0] = new cashPayment(50000);
-    p[1] = new momoPayment(100000);
-    p[2] = new cardPayment(200000, "thinh12345");
+    transport* t[3];
+    t[0] = new carElectric( 123, "Vin", 2023);
+    t[1] = new motorbike( 278, "Honda", 1999);
+    t[2] = new truck( 183, "Suzuki", 2027);
 
-    for(int i = 0; i<3; i++) {
-        p[i]->pay();
+    for (int i = 0; i< 3; i++) {
+        t[i]->speed();
+        t[i]->refuel();
     }
 
-    for(int i = 0; i < 3; i++) {
-        delete p[i];
+    for (int i = 0; i<3; i++){
+        delete t[i];
     }
-
     return 0;
+
 }
