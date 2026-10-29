@@ -2,89 +2,71 @@
 #include <string>
 using namespace std;
 
-class transport {
+class phuongTien {
     protected :
-        int lisencePlate;
-        string autoMaker;
-        int yearProduction;
+        string bienSo;
+        string hangXe;
+
+    public : 
+        phuongTien(string bs, string hx) {
+            bienSo = bs;
+            hangXe = hx;
+        }
+
+        virtual ~phuongTien() {};
+
+        virtual void diChuyen() = 0;
+
+        virtual void hienThi() = 0;
+};
+
+class Oto : public phuongTien {
+    private :
+        int soChoNgoi;
 
     public :
-        transport(int l, string a, int y) {
-            lisencePlate = l;
-            autoMaker = a;
-            yearProduction = y;
-            if(y > 2026) {
-                cout <<" Bạn đi trước tương lai à!"<<endl;
-            } else if (y < 2000) {
-                cout <<"Xe đã quá cũ! Cần đổi ngay!"<<endl;
-            }
+        Oto(string bs, string hx, int numberChairs) : phuongTien(bs,hx) {
+            soChoNgoi = numberChairs;
         }
 
-        virtual ~transport() {};
-
-        virtual void speed() {
-            cout <<"Các phương tiện có vận tốc trung bình là 50km/h"<<endl;
+        void diChuyen() override {
+            cout << "Di chuyển với tốc độ tối đa 120km/h" << endl;
         }
 
-        virtual void refuel() {
-            cout <<"Cần nạp nhiên liệu"<<endl;
+        void hienThi() override {
+            cout << "Xe sang trọng quý phái" << endl;
         }
 };
 
-class carElectric : public transport {
+class xeMay : public phuongTien {
+    private :
+        int dungTichXiLang;
+
     public :
-        carElectric(int l, string a, int y) : transport(l, a, y) {}
-
-        void speed() override {
-            cout <<"Vận tốc của ô tô có thể lên tới 100km/h" << endl;
+        xeMay(string bs, string hx, int dungTich) : phuongTien(bs,hx) {
+            dungTichXiLang = dungTich;
         }
 
-        void refuel() override {
-            cout <<"Xe cần nạp điện để tiếp tục đi" << endl;
+        void diChuyen() override {
+            cout << "Di chuyển với tốc độ tối đa 80km/h" << endl;
         }
 
-};
-
-class motorbike : public transport {
-    public :
-        motorbike(int l, string a, int y) : transport(l, a, y) {}
-
-        void speed() override {
-            cout <<"Vận tốc của xe máy có thể lên tới 70km/h" << endl;
-        }
-
-        void refuel() override {
-            cout <<"Xe cần đổ xăng để tiếp tục đi" << endl;
-        }
-};
-
-class truck : public transport {
-    public :
-        truck(int l, string a, int y) : transport(l, a, y) {}
-
-        void speed() override {
-            cout <<"Vận tốc của xe tải có thể lên tới 120km/h" << endl;
-        }
-
-        void refuel() override {
-            cout <<"Xe cần đổ xăng để tiếp tục đi" << endl;
+        void hienThi() override {
+            cout << "Xe tiện lợi, luồn lách lúc tắc đường" << endl;
         }
 };
 
 int main() {
-    transport* t[3];
-    t[0] = new carElectric( 123, "Vin", 2023);
-    t[1] = new motorbike( 278, "Honda", 1999);
-    t[2] = new truck( 183, "Suzuki", 2027);
+    phuongTien* ds[2];
+    ds[0] = new Oto("30-F8", "BMW", 2);
+    ds[1] = new xeMay("29-N3", "Honda", 10);
 
-    for (int i = 0; i< 3; i++) {
-        t[i]->speed();
-        t[i]->refuel();
+    for(int i = 0; i < 2; i++) {
+        ds[i]->diChuyen();
+        ds[i]->hienThi();
     }
 
-    for (int i = 0; i<3; i++){
-        delete t[i];
-    }
+    for(int i = 0; i < 2; i++) delete ds[i];
+
     return 0;
-
 }
