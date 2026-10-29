@@ -1,7 +1,3 @@
-git add README.md
-
-git rebase --continue
-
 # G6 — Cross-Platform Game Asset Pipeline & Resource Management Framework
 
 > **Object-Oriented Programming (OOP) Project — C++**
@@ -38,6 +34,12 @@ The system focuses on three core problems:
 | Distributed resource management | **Singleton** |
 
 These three patterns form the core architecture of the project.
+
+> **Current MVP:** implemented in `include/` and `src/` with `Asset`,
+> `AssetLoader`, `TextureAsset`, `AudioAsset`, `FileAssetLoader`, `AssetManager`
+> (Singleton + shared cache) and `AssetProxy` (lazy loading). LRU Cache,
+> asynchronous loading, Observer, benchmark and Scene Simulator are planned
+> extensions and are not implemented yet.
 
 ---
 
@@ -483,48 +485,50 @@ When the cache exceeds its limit, the least recently used asset should be evicte
 
 # 📁 Project Structure
 
-A possible project structure is:
+Current MVP structure:
 
 ```text
 G6-Asset-Pipeline/
 │
 ├── include/
-│   ├── IAsset.h
+│   ├── Asset.h
+│   ├── AssetLoader.h
 │   ├── TextureAsset.h
 │   ├── AudioAsset.h
-│   ├── AssetProxy.h
+│   ├── FileAssetLoader.h
 │   ├── AssetManager.h
-│   ├── FlyweightFactory.h
-│   ├── LRUCache.h
-│   └── IAssetListener.h
+│   └── AssetProxy.h
 │
 ├── src/
 │   ├── TextureAsset.cpp
 │   ├── AudioAsset.cpp
-│   ├── AssetProxy.cpp
+│   ├── FileAssetLoader.cpp
 │   ├── AssetManager.cpp
-│   ├── FlyweightFactory.cpp
-│   ├── LRUCache.cpp
-│   └── ...
+│   └── AssetProxy.cpp
 │
-├── tests/
-│   └── ...
-│
-├── benchmark/
-│   └── ...
-│
-├── demo/
-│   └── SceneSimulator.cpp
-│
-├── docs/
-│   ├── UML/
-│   └── report/
-│
-├── README.md
-└── CMakeLists.txt
+├── main.cpp
+└── README.md
 ```
 
-> The exact directory structure may change according to the implementation of the team.
+> Planned files for LRU Cache, asynchronous loading, Observer, tests and
+> benchmark will be added when those features are implemented.
+
+---
+
+# 🖥️ Build and Run
+
+The MVP is a normal terminal program. No web server or browser UI is required.
+
+```bash
+g++ -std=c++17 -Wall -Wextra -pedantic -Iinclude main.cpp src/*.cpp -o g6_mvp
+./g6_mvp
+```
+
+Expected result:
+
+```text
+[DONE] MVP checks passed
+```
 
 ---
 
@@ -686,18 +690,3 @@ Software Architecture
 ```
 
 rather than implementing Design Patterns as isolated theoretical examples.
-
-=======
-x1
-
-OOP
-
-# OOP
-
->>>>>>> f79ec89 ( pull readme from github)
->>>>>>>
->>>>>>
->>>>>
->>>>
->>>
->>
